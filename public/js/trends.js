@@ -11,19 +11,4 @@ var trendsApp = angular.module('trends',['ui.router'])
 		$scope.message='ng-work';
 						
 
-
-
-					/*
-						$(document).ready(function() {
-						 
-						  $("#owl-demo").owlCarousel({
-						    items : 4,
-						    lazyLoad : true,
-						    navigation : true
-						  }); 
-
-				
-						});
-					*/
-
 	});

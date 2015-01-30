@@ -1,6 +1,6 @@
 // set up ======================================================================
 var express  = require('express');
-						// create our app w/ express
+				 		// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
 var port  	 = process.env.PORT || 3000; 				// set the port
 var database = require('./config/database'); 			// load the database config
@@ -16,6 +16,9 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 //var MongoStore = require('connect-mongo')(express);
  
 var app      = express(); 		
+
+
+
 // configuration ===============================================================
 mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
  
@@ -52,3 +55,24 @@ require('./app/routes.js')(app);
 // listen (start app with node server.js) ======================================
 app.listen(port);
 console.log("App listening on port " + port);
+
+
+
+var http = require('http').Server(app);
+
+var io = require('socket.io').listen(http);
+
+
+app.get('/chat',function(req,res){
+	res.sendfile(__dirname + '/public/meeting.html');
+});
+
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
+
+http.listen(3001);

@@ -1,6 +1,6 @@
 
 
-var routerApp = angular.module('routerApp',['ui.router','home','hcc','trends','dashboardApp']);
+var routerApp = angular.module('routerApp',['ui.router','dashboard','hcc','trends','meeting']);
 
 	routerApp.filter('slice', function() {
 	  return function(arr, start, end) {

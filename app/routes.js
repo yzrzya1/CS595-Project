@@ -4,7 +4,7 @@ var It = require('./models/it');
 
 var sess;
 var currentDate = Date();
-
+var nicknames = []; 
 
 module.exports = function(app) {
 
@@ -196,6 +196,3 @@ module.exports = function(app) {
 
 
 };
-
-
-
