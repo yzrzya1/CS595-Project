@@ -1,5 +1,7 @@
 // set up ======================================================================
-var express  = require('express');
+//var express  = require('express');
+var express = require('express');
+var app = express();
 				 		// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
 var port  	 = process.env.PORT || 3000; 				// set the port
@@ -14,10 +16,15 @@ var bodyParser = require('body-parser'); 	// pull information from HTML POST (ex
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 //var MongoStore = require('connect-mongo')(express);
- 
-var app      = express(); 		
+ var flash = require('connect-flash');
+var router = express.Router();
+
+ var server = require('http').createServer(app).listen(port);
+ var io = require('socket.io').listen(server);
 
 
+//var server = require('http').Server(app);
+//var io = require('socket.io')(server);	
 
 // configuration ===============================================================
 mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
@@ -31,10 +38,23 @@ app.use(methodOverride());
 
 // using cnonect-session  cookies parser
 app.use(session({secret: 'sshhhhh'}));
+app.use(flash());
 //app.use(express.cookieParser());
 
+router.use(function(req, res, next) {
 
+	// log each request to the console
+	console.log(req.method, req.url);
 
+	// continue doing what we were doing and go to the route
+	next();	
+});
+
+router.get('/about',function(req,res){
+	res.send('about');
+});
+
+app.use('/about',router);
 
 
 
@@ -53,14 +73,12 @@ app.requestBeforeRoute = function requestBeforeRoute(server){
 require('./app/routes.js')(app);
 
 // listen (start app with node server.js) ======================================
-app.listen(port);
+//app.listen(port);
 console.log("App listening on port " + port);
 
 
 
-var http = require('http').Server(app);
-
-var io = require('socket.io').listen(http);
+//var http = require('http').Server(app);
 
 
 app.get('/chat',function(req,res){
@@ -69,10 +87,12 @@ app.get('/chat',function(req,res){
 
 
 io.on('connection', function(socket){
+	console.log(socket.id);
   socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+    console.log('message: ' + msg);
   });
 });
 
 
-http.listen(3001);
+//http.listen(3001);
+//console.log('socket server on 3001');

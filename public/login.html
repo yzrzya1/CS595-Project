@@ -2,53 +2,54 @@
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<title>Login </title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Ionicons -->
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        
+        <!-- Morris chart -->
+        <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+        <!-- jvectormap -->
+        <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <!-- fullCalendar -->
+        <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <!-- Daterange picker -->
+        <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 
-	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
 
 	</head>
-	<body ng-app="loginApp">
-
-		<div id="login-page" class="container" ng-controller="loginController">
+	<!--<body ng-app='loginApp' ng-controller = 'loginController'> -->
+        <body>
+		<div id="login-page" class="container" >
 			<h1>Login</h1>
-			<!--
-			{?messages}
-				{#messages}
-					{?error}
-						{#error}
-						<h4 class="carrot-text">{.}</h4>
-						{/error}
-					{/error}
-					{?info}
-						{#info}
-						<h4 class="lightblue-text">{.}</h4>
-						{/info}
-					{/info}
-				{/messages}
-			{/messages}
-		-->
-			<form id="login-form" class="well">
+
+			<form id="login-form" class="well" method="post" action='/login'>
 			<input type="text" id="uname" class="span2" placeholder="User Name" /><br />
 			<input type="password" id="upsd" class="span2" placeholder="Password" /><br />
-			<!--
-				<input type="checkbox" checked data-toggle="toggle" data-size="small" data-on="Remember me" data-off="Not Remember" >
-			-->
+
 				 <hr>
-			<button type="submit" class="btn btn-primary" ng-click="auth()">Sign in</button>
+			<input type="submit" class="btn btn-primary" value='Sign in'/>
 			<a href="/register.html">  Register</a>
-			{{message}}
+			
 		</form>	
 		</div>
-		<script src="js/app.js"></script>
+		
+
 	</body>
 </html>

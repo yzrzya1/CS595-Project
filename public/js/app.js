@@ -1,6 +1,9 @@
+//	var loginApp = angular.module('loginApp',[]);
 
 
-var routerApp = angular.module('routerApp',['ui.router','dashboard','hcc','trends','meeting']);
+
+var routerApp = angular.module('routerApp',
+	['ui.router','dashboard','hcc','trends','meeting']);
 
 	routerApp.filter('slice', function() {
 	  return function(arr, start, end) {
@@ -15,11 +18,17 @@ routerApp.config(
 	//$urlRouterProvider.otherwise('/dashboard');
 
 	$stateProvider
-
-		
-
-
+        .state('table-data', {
+            url: '/table-data',
+            templateUrl: 'table-data.html'
+        })
 	
+        .state('socketio', {
+            url: '/socketio',
+            templateUrl: 'socketio.html'
+        })
+
+
 
 
 
@@ -56,29 +65,37 @@ routerApp.config(
 });
 
 
-
+/*
 function loginController($scope,$http){
 	$scope.formData = {};
 	var inUname='',
 		inUpsd='';
-
-	console.log('2');
-	$scope.logininfos=[];
+	$scope.message='ng-work'
+	
 
 	$scope.auth = function(){
 		console.log('call login btn');
 		$scope.formData.uname=$("#uname").val();
 		$scope.formData.upsd=$("#upsd").val();
-		
-		$scope.message=$scope.formData;
 
-	$http.post('/api/login/logininfos',$scope.formData)
-		.success(function(data){
-			console.log($scope.formData);
-			window.location.assign(data);
-		})
-		.error(function(data){
-			console.log('Error:' + data);
+		//$scope.message=$scope.formData;
+
+		$http({
+		    method: 'POST',
+		    url: '/login',
+		    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		    transformRequest: function(obj) {
+		        var str = [];
+		        for(var p in obj)
+		        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+		        return str.join("&");
+		    },
+		    data: {username: $scope.formData.uname, password: $scope.formData.upsd}
+		}).success(function (data) {
+			console.log(data);
 		});
-	};
+
+
+	}};
 };
+*/

@@ -2,14 +2,77 @@ var Logininfo = require('./models/logininfo');
 var Project = require('./models/project');
 var It = require('./models/it');
 
-var sess;
+
 var currentDate = Date();
 var nicknames = []; 
+var userInfo={'username':'admin','password':'admin'};
+
+
+//****************using Passport********************
+
+var passport = require('passport')
+	, LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(
+		  function(username, password, done) {
+		    Logininfo.findOne({ uname: username }, function(err, user) {
+		      if (err) { return done(err); }
+		      if (!user) {
+		        return done(null, false, { message: 'Incorrect username.' });
+		      }
+		      if (!user.validPassword(password)) {
+		        return done(null, false, { message: 'Incorrect password.' });
+		      }
+		      return done(null, user);
+		    })}
+));
+
+passport.serializeUser(function(user,done){
+	done(null,user.username);
+});
+
+passport.deserializeUser(function(username,done){
+	done(null,{username:username});
+});
 
 module.exports = function(app) {
 
 
 
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.post('/login',
+	//passport.authenticate('local',{
+	//failureRedirect: '/login'}),
+	
+	function(req,res){
+
+		console.log(req.body);
+		console.log("post Login");
+		res.redirect('/#/dashboard');
+	}
+
+	);
+
+app.get('/login',
+	function(req,res){
+		console.log('receive get');
+		res.sendfile('public/login.html');
+	}
+	);
+
+
+app.get('/',
+	function(req,res){
+		
+		res.sendfile('public/index.html');
+	}
+	);
+//***************************end ****************
 	app.get('/api/projects', function(req, res) {
 		Project.find(function(err, projects) {
 			if (err)

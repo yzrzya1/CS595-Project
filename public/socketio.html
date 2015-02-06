@@ -1,0 +1,35 @@
+       <aside class="right-side">
+                <section class="content-header">
+                    <h1>
+                        Dashboard
+                        <small>Control panel</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section>
+
+
+            <section class="content" >
+            			
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+$(function(){
+    //var socket = io('http://localhost:3001/');
+    //var socket = io.connect('http://localhost:3000');
+    var socket = io.connect();
+});
+  
+  $('form').submit(function(){
+    socket.emit('chat message', $('#m').val());
+    $('#m').val('');
+    return false;
+  });
+</script>   
+
+            </section>
+        </aside>
+
+

@@ -22,6 +22,9 @@
         <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <!-- DataTables CSS -->
+
+          
 
 
 
@@ -30,6 +33,10 @@
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
+
+
+
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="js/Chart.min.js"></script>
         <script src="js/app.js"></script>
@@ -323,8 +330,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+                            <a href="#/hcc">
+                                <i class="fa fa-th"></i> <span>Table</span> <small class="badge pull-right bg-green">new</small>
                             </a>
                         </li>
                         <li class="treeview">
@@ -370,8 +377,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
+                                <li><a href="#/hcc"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
+                                <li><a href="#/todo"><i class="fa fa-angle-double-right"></i> Daily Tasks</a></li>
                             </ul>
                         </li>
                         <li>
@@ -408,23 +415,8 @@
 
             <!-- Right side column. Contains the navbar and content of the page 
 *********nav end there****************************-->
-        <aside class="right-side">
-                <section class="content-header">
-                    <h1>
-                        Dashboard
-                        <small>Control panel</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ol>
-                </section>
-
-
-            <section class="content" >
-            <div  ui-view></div>
-            </section>
-        </aside>
+ 
+        <div  ui-view></div>
         </div><!-- ./wrapper -->
 
         <!-- add new calendar event modal -->
