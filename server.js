@@ -16,13 +16,13 @@ var bodyParser = require('body-parser'); 	// pull information from HTML POST (ex
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 //var MongoStore = require('connect-mongo')(express);
- var flash = require('connect-flash');
+var flash = require('connect-flash');
 var router = express.Router();
 
- var server = require('http').createServer(app).listen(port);
- var io = require('socket.io').listen(server);
+var server = require('http').createServer(app).listen(port);
+var io = require('socket.io').listen(server);
 
-
+var nicknames = []; 
 //var server = require('http').Server(app);
 //var io = require('socket.io')(server);	
 
@@ -86,11 +86,40 @@ app.get('/chat',function(req,res){
 });
 
 
-io.on('connection', function(socket){
-	console.log(socket.id);
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-  });
+io.sockets.on('connection',function(socket){
+	console.log("received connection");
+
+   socket.on('new_user',function(data, callback){
+		if(nicknames.indexOf(data) != -1){
+			callback(false);
+		}else{
+			callback(true);
+			socket.nickname = data;
+			console.log(socket.nickname);
+			nicknames.push(socket.nickname);
+			io.sockets.emit('usernames', nicknames);
+		}
+      //  io.sockets.emit('usernames',data);
+
+     // sockets.broadcast.emit('new_message',data)
+	});
+		 
+
+	socket.on('send_message',function(data){
+		console.log("received send_message");
+        io.sockets.emit('new_message',{"user": socket.nickname, "data":data});
+      //sockets.broadcast.emit('new_message',data)
+	});
+
+	socket.on('disconnect',function(data){
+		if(!socket.nickname) return;
+
+		nicknames.splice(nicknames.indexOf(socket.nickname),1);
+        io.sockets.emit('usernames', nicknames);
+      //sockets.broadcast.emit('new_message',data)
+	});
+
+	
 });
 
 

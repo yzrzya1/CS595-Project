@@ -1,35 +1,92 @@
-       <aside class="right-side">
-                <section class="content-header">
-                    <h1>
-                        Dashboard
-                        <small>Control panel</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ol>
-                </section>
-
-
-            <section class="content" >
-            			
+<link href="css/socketio.css" rel="stylesheet" type="text/css" />
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script>
-$(function(){
-    //var socket = io('http://localhost:3001/');
-    //var socket = io.connect('http://localhost:3000');
-    var socket = io.connect();
-});
-  
-  $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
-    $('#m').val('');
-    return false;
-  });
-</script>   
+<script src="js/socketio.js"></script>
 
-            </section>
-        </aside>
+<aside class="right-side">
+    <section class="content-header">
+        <h1>Dashboard
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#/dashboard"><i class="fa fa-dashboard">
+                </i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+
+
+<section class="content" >
+    <h1 style="color:white" align="center">Intersources Inc Coffee  Chat </h1>
+
+    <h2 align="center" style="background-color:lightgreen">
+    <div id="nickWrap" >
+        <form id="setNick">
+            <p id="nickError"></p>
+            <p><font size="5" color="white">Enter a Nick Name to Chat</font></p> 
+            <input size="25" id="nickname">
+            <input type="submit" value='Enter'>
+        </form>
+    </div>
+
+    </h2>
+    <div id="contentWrap">
+        <table>
+            <tr>
+            <td>
+                <div>
+                    <div id="chatWrap">
+                    <div class="container" style="width:500px">
+                    <div>
+                    <div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-comment"></span> 
+                                Chat
+                            </div>
+                            <div id="panel-body" class="panel-body">
+                                <ul class="chat" id="chat">
+                                     <!--  All chat messages get appended here     -->
+                                </ul>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="input-group">
+                                    <input id="btn-input" type="text" 
+                                    class="form-control input-sm" 
+                                    placeholder="Type your message here...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-warning btn-sm" 
+                                                id="btn-chat">
+                                        Send
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    </div>
+                    </div> <!-- chat wrap ends-->
+                </div> 
+            </td>
+            <td style="vertical-align:top">
+                <div>
+                    <ul class="list-group" id="usersList">
+                        <li id="header" class="list-group-item">
+                            <span class="badge"></span>
+                             *  Current Users * </li>
+                        <li class="list-group-item">
+                            <span class="badge">Online</span>
+                            item</li>
+                                                                                                
+                    </ul>
+                </div>
+            </td>
+            </tr>
+        </table>
+    </div>     
+</section>
+</aside>
 
 
