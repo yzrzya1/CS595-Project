@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Dashboard</title>
+        <title>E M | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -45,6 +45,7 @@
         <script src="js/hcc.js"></script>
         <script src="js/trends.js"></script>
         <script src="js/meeting.js"></script>
+        <script src="js/pages.js"></script>
 
         
     </head>
@@ -53,7 +54,7 @@
         <header class="header">
             <a href="index.html" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                AdminLTE
+                Employee Management
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -330,9 +331,24 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#/hcc">
-                                <i class="fa fa-th"></i> <span>Table</span> <small class="badge pull-right bg-green">new</small>
+                            <a href="#/socketio">
+                                <i class="fa fa-th"></i> <span>Meeting</span> <small class="badge pull-right bg-green">new</small>
                             </a>
+                        </li>
+                        <li>
+                            <a href="#/pages">
+                                <i class="fa fa-th"></i> <span>Components</span> <small class="badge pull-right bg-green">new</small>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-table"></i> <span>Tables</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#/hcc"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
+                                <li><a href="#/todo"><i class="fa fa-angle-double-right"></i> Daily Tasks</a></li>
+                            </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">
@@ -371,26 +387,17 @@
                                 <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Tables</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="#/hcc"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                                <li><a href="#/todo"><i class="fa fa-angle-double-right"></i> Daily Tasks</a></li>
-                            </ul>
-                        </li>
+
                         <li>
                             <a href="pages/calendar.html">
                                 <i class="fa fa-calendar"></i> <span>Calendar</span>
-                                <small class="badge pull-right bg-red">3</small>
+                                <small class="badge pull-right bg-red">building</small>
                             </a>
                         </li>
                         <li>
                             <a href="pages/mailbox.html">
                                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-yellow">12</small>
+                                <small class="badge pull-right bg-red">building</small>
                             </a>
                         </li>
                         <li class="treeview">

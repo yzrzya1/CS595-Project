@@ -78,8 +78,6 @@ console.log("App listening on port " + port);
 
 
 
-//var http = require('http').Server(app);
-
 
 app.get('/chat',function(req,res){
 	res.sendfile(__dirname + '/public/meeting.html');
@@ -99,16 +97,14 @@ io.sockets.on('connection',function(socket){
 			nicknames.push(socket.nickname);
 			io.sockets.emit('usernames', nicknames);
 		}
-      //  io.sockets.emit('usernames',data);
 
-     // sockets.broadcast.emit('new_message',data)
 	});
 		 
 
 	socket.on('send_message',function(data){
 		console.log("received send_message");
         io.sockets.emit('new_message',{"user": socket.nickname, "data":data});
-      //sockets.broadcast.emit('new_message',data)
+
 	});
 
 	socket.on('disconnect',function(data){
@@ -116,12 +112,10 @@ io.sockets.on('connection',function(socket){
 
 		nicknames.splice(nicknames.indexOf(socket.nickname),1);
         io.sockets.emit('usernames', nicknames);
-      //sockets.broadcast.emit('new_message',data)
+     
 	});
 
 	
 });
 
 
-//http.listen(3001);
-//console.log('socket server on 3001');

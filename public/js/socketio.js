@@ -97,3 +97,7 @@ var usersList = $('#usersList');
       
          
       });
+
+$(window).on('beforeunload', function(){
+    socket.close();
+});
