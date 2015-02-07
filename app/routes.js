@@ -1,8 +1,8 @@
 var Logininfo = require('./models/logininfo');
 var Project = require('./models/project');
 var It = require('./models/it');
-
-
+var Contact = require('./models/contact');
+ 
 var currentDate = Date();
 var nicknames = []; 
 var userInfo={'username':'admin','password':'admin'};
@@ -75,7 +75,7 @@ app.get('/',
 //***************************end ****************
 	app.get('/api/projects', function(req, res) {
 		Project.find(function(err, projects) {
-			if (err)
+			if (err) 
 				res.send(err)
 			res.json(projects); 
 		});
@@ -89,6 +89,13 @@ app.get('/',
 		});
 	});
 
+	app.get('/api/contact', function(req, res) {
+		Contact.find(function(err, contact) {
+			if (err)
+				res.send(err)
+			res.json(contact); 
+		});
+	});
 
 
 

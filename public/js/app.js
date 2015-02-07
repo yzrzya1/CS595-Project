@@ -3,7 +3,7 @@
 
 
 var routerApp = angular.module('routerApp',
-	['ui.router','dashboard','hcc','trends','meeting','pages']);
+	['ui.router','dashboard','hcc','trends','meeting','pages','contact']);
 
 	routerApp.filter('slice', function() {
 	  return function(arr, start, end) {

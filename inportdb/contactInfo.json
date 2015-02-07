@@ -1,0 +1,88 @@
+{
+    "admin": [
+        {
+            "firstName": "John",
+            "lastName": "Smith",
+            "Email": "JohnSith@gmail.com",
+            "address": {
+                "streetAddress": "21 2nd Street",
+                "city": "New York",
+                "state": "NY",
+                "postalCode": "10021"
+            },
+            "phoneNumber": [
+                {
+                    "type": "home",
+                    "number": "212 555-1234"
+                },
+                {
+                    "type": "fax",
+                    "number": "646 555-4567"
+                }
+            ]
+        },
+        {
+            "firstName": "Kim",
+            "lastName": "Smith",
+            "Email": "KimSith@gmail.com",
+            "address": {
+                "streetAddress": "11 3rd Street",
+                "city": "New York",
+                "state": "NY",
+                "postalCode": "11111"
+            },
+            "phoneNumber": [
+                {
+                    "type": "home",
+                    "number": "111-222-1333"
+                },
+                {
+                    "type": "fax",
+                    "number": "222-225-3333"
+                }
+            ]
+        },
+        {
+            "firstName": "John",
+            "lastName": "Apple",
+            "Email": "JohnApple@gmail.com",
+            "address": {
+                "streetAddress": "26 6th Blve",
+                "city": "San Jose",
+                "state": "CA",
+                "postalCode": "95111"
+            },
+            "phoneNumber": [
+                {
+                    "type": "home",
+                    "number": "222-111-4444"
+                },
+                {
+                    "type": "fax",
+                    "number": "408-222-5555"
+                }
+            ]
+        },
+        {
+            "firstName": "David",
+            "lastName": "King",
+            "Email": "DavidKing@gmail.com",
+            "address": {
+                "streetAddress": "flower Avnue",
+                "city": "San Jose",
+                "state": "CA",
+                "postalCode": "95221"
+            },
+            "phoneNumber": [
+                {
+                    "type": "home",
+                    "number": "408-112-4444"
+                },
+                {
+                    "type": "fax",
+                    "number": "418-222-5335"
+                }
+            ]
+        }
+    ]
+}
