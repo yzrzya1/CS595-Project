@@ -8,7 +8,7 @@ var contactApp = angular.module('contact',['ui.router'])
 		});
 	})
 	.controller('contactCtrl',function($scope,$http){
-
+		
 
 
 
