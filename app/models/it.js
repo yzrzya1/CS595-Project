@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('It', {
-		uname: String,
+		/*uname: String,
 		lname:String,
-		role: String,
-		email: String	
+		role: String
+		,email: String	
+		*/
 });

@@ -2,6 +2,7 @@ var Logininfo = require('./models/logininfo');
 var Project = require('./models/project');
 var It = require('./models/it');
 var Contact = require('./models/contact');
+//var contact = new Contact();
  
 var currentDate = Date();
 var nicknames = []; 
@@ -51,9 +52,11 @@ app.post('/login',
 	
 	function(req,res){
 
-		console.log(req.body);
+		console.log(req.body.uname);
 		console.log("post Login");
-		res.redirect('/#/dashboard');
+		//if(req.body==='admin'){
+		//res.redirect('/#/dashboard');
+	//}
 	}
 
 	);
@@ -85,18 +88,55 @@ app.get('/',
 		It.find(function(err, its) {
 			if (err)
 				res.send(err)
-			res.json(its); 
-		});
+			res.json(its);    
+		}).limit(3);
 	});
 
-	app.get('/api/contact', function(req, res) {
-		Contact.find(function(err, contact) {
+
+	app.get('/api/contacts', function(req, res) {
+		Contact.find(function(err, contacts) {
 			if (err)
-				res.send(err)
-			res.json(contact); 
+				res.send(err);
+			res.json(contacts); 
+		});
+	});
+	app.get('/api/contacts/:contact_id',function(req, res){
+		Contact.findById(req.params.contact_id,function(err, contact){
+			if(err)
+				res.send(err);
+			res.json(contact);
 		});
 	});
 
+	app.post('/api/contacts', function(req, res) {
+		var contact = new Contact();
+		contact.firstName = req.body.firstName;
+		console.log(contact.firstName);
+		
+		Contact.create({
+			"admin":[{firstName: req.body.firstName}]
+		},function(err,contacts) {
+			if (err)
+				res.send(err);
+			res.json(contacts);
+		});
+	});
+
+	app.delete('/api/contacts/:contact_id', function(req, res) {
+		Contact.remove({
+			_id : req.params.contact_id
+		}, function(err, contact) {
+			if (err)
+				res.send(err);
+
+			
+			Contact.find(function(err, contact) {
+				if (err)
+					res.send(err)
+				res.json(contact);
+			});
+		});
+	});
 
 
 //****************************************
