@@ -1,0 +1,84 @@
+
+<style>
+  html          { overflow-y:scroll; }
+  body          { padding-top:50px; }
+  #todo-list        { margin-bottom:15px; }
+  #todo-form        { margin-bottom:15px; }
+  .done-true:before {
+    content: "\f00c";
+      font-family: FontAwesome;
+  }
+  .done-false:before {
+    content: "\f110";
+      font-family: FontAwesome;
+  }
+</style>
+
+       <aside class="right-side">
+                <section class="content-header">
+                    <h1>
+                        Dashboard
+                        <small>Control panel</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Table</li>
+                    </ol>
+                </section>
+
+
+            <section class="content" >
+
+
+              
+
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Today's tasks 
+        <span class="label label-info">{{ todos.length }}
+        </span><i class="fa fa-spinner fa-spin fa-2x fa-fw margin-bottom"></i></h1>
+    </div>
+    <div id="todo-list" class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+
+        <div class="checkbox" ng-repeat="todo in todos">
+          <label style="width: 100%; ">
+            <i class="fa fa-tasks"></i> {{$index+1}}  {{ todo.text }}
+
+          <div style="float : right">
+            
+             <i class='done-{{ todo.checked }}' ng-click="updateTodo(todo._id)"></i>
+              
+            <i class="fa fa-trash-o" ng-click="deleteTodo(todo._id)"></i>
+          </div>
+          </label>
+        </div>
+
+        <p class="text-center" ng-show="loading">
+          <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </p>
+
+      </div>
+    </div>
+
+    <!-- FORM TO CREATE TODOS -->
+    <div id="todo-form" class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control input-lg text-center" placeholder="Add new Task" ng-model="formData.text">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">
+            Add</button>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+            </section>
+        </aside>

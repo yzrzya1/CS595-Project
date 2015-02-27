@@ -2,77 +2,104 @@ var Logininfo = require('./models/logininfo');
 var Project = require('./models/project');
 var It = require('./models/it');
 var Contact = require('./models/contact');
+var Todo = require('./models/todo');
 //var contact = new Contact();
  
 var currentDate = Date();
-var nicknames = []; 
-var userInfo={'username':'admin','password':'admin'};
-
-
 //****************using Passport********************
 
-var passport = require('passport')
-	, LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(
-		  function(username, password, done) {
-		    Logininfo.findOne({ uname: username }, function(err, user) {
-		      if (err) { return done(err); }
-		      if (!user) {
-		        return done(null, false, { message: 'Incorrect username.' });
-		      }
-		      if (!user.validPassword(password)) {
-		        return done(null, false, { message: 'Incorrect password.' });
-		      }
-		      return done(null, user);
-		    })}
-));
-
-passport.serializeUser(function(user,done){
-	done(null,user.username);
-});
-
-passport.deserializeUser(function(username,done){
-	done(null,{username:username});
-});
-
-module.exports = function(app) {
 
 
 
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-
-app.post('/login',
-	//passport.authenticate('local',{
-	//failureRedirect: '/login'}),
-	
-	function(req,res){
-
-		console.log(req.body.uname);
-		console.log("post Login");
-		//if(req.body==='admin'){
-		//res.redirect('/#/dashboard');
-	//}
-	}
-
-	);
+module.exports = function(app,passport) {
 
 app.get('/login',
-	function(req,res){
-		console.log('receive get');
-		res.sendfile('public/login.html');
+	function(req,res){ 
+		res.render('login.ejs');
 	}
 	);
+
+app.get('/profile',isLoggedIn,
+	function(req,res){
+		res.render('profile.ejs', {
+			user : req.user
+		});
+
+		console.log("current session is :" +req.session.uname);
+	});
+
+app.get('/logout', function(req, res) {
+	req.logout();
+	res.redirect('/login');
+	req.session = null ;
+	console.log(req.session);
+});
+
+app.get('/loginlocal',
+	function(req,res){
+		console.log('login load');
+		res.render('loginlocal.ejs', { message: req.flash('loginMessage') });
+	}
+	);
+
+app.post('/loginlocal',passport.authenticate('local-login', {
+			successRedirect : '/', // redirect to the secure profile section
+			failureRedirect : '/loginlocal', // redirect back to the signup page if there is an error
+			failureFlash : true // allow flash messages
+		}),
+	
+	function(req,res){
+		req.session.uname =req.body.uname;
+		console.log(req.body);
+		console.log(req.session);
+
+		console.log("post Login");
+		res.redirect('/');
+	}
+
+	);
+
+
+
+app.get('/signup',
+	function(req,res){
+		console.log('signup load');
+		res.render('signup.ejs', { message: req.flash('signupMessage') });
+	}
+	);
+
+app.post('/signup', passport.authenticate('local-signup', {
+	successRedirect : '/', // redirect to the secure profile section
+	failureRedirect : '/signup', // redirect back to the signup page if there is an error
+	failureFlash : true // allow flash messages
+}));
+
+app.get('/unlink/local', isLoggedIn, function(req, res) {
+	var user            = req.user;
+	user.local.email    = undefined;
+	user.local.password = undefined;
+	user.save(function(err) {
+		res.redirect('/');
+	});
+});
+app.get('/connect/local', function(req, res) {
+	res.render('connect-local.ejs', { message: req.flash('loginMessage') });
+});
+app.post('/connect/local', passport.authenticate('local-signup', {
+	successRedirect : '/', // redirect to the secure profile section
+	failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
+	failureFlash : true // allow flash messages
+}));
+
+
+
+
+
 
 
 app.get('/',
 	function(req,res){
-		
-		res.sendfile('public/index.html');
+		res.sendfile('views/index.html');
 	}
 	);
 //***************************end ****************
@@ -92,7 +119,7 @@ app.get('/',
 		}).limit(3);
 	});
 
-
+ 
 	app.get('/api/contacts', function(req, res) {
 		Contact.find(function(err, contacts) {
 			if (err)
@@ -109,18 +136,30 @@ app.get('/',
 	});
 
 	app.post('/api/contacts', function(req, res) {
-		var contact = new Contact();
-		contact.firstName = req.body.firstName;
-		console.log(contact.firstName);
 		
-		Contact.create({
-			"admin":[{firstName: req.body.firstName}]
-		},function(err,contacts) {
+		
+		var contact_data = {
+								admin:[
+									{	firstName: 	req.body.firstName,
+										lastName: 	req.body.lastName,
+									 	Email: 		req.body.Email,
+									 	phoneNumber: [{type:'private', 	number:  	req.body.phoneNumberprivate},
+									 				  {type:'public', 	number: 	req.body.phoneNumberpublic}
+									 				 ]
+									}]
+							};
+		var contact = new Contact(contact_data);
+
+		contact.save(function(err,contacts) {
 			if (err)
 				res.send(err);
 			res.json(contacts);
+			
 		});
+		
 	});
+
+
 
 	app.delete('/api/contacts/:contact_id', function(req, res) {
 		Contact.remove({
@@ -137,6 +176,52 @@ app.get('/',
 			});
 		});
 	});
+
+//******************** daily task***************
+
+
+
+	app.get('/api/todos', function(req, res) {
+		getTodos(res);
+	});
+
+	app.post('/api/todos', function(req, res) {
+		Todo.create({
+			text : req.body.text,
+			checked : false
+		}, function(err, todo) {
+			if (err)
+				res.send(err);
+			getTodos(res);
+		});
+
+	});
+
+	app.put('/api/todos/:todo_id', function(req, res) {
+		Todo.findById(req.params.todo_id, function(err, todo){
+			if (err)
+				res.send(err);
+			todo.checked=!req.body.checked;
+			todo.save(function(err){
+				if(err)
+					res.send(err);
+				getTodos(res);
+			});
+		});
+	});
+
+	app.delete('/api/todos/:todo_id', function(req, res) {
+		Todo.remove({
+			_id : req.params.todo_id
+		}, function(err, todo) {
+			if (err)
+				res.send(err);
+
+			getTodos(res);
+		});
+	});
+
+
 
 
 //****************************************
@@ -269,7 +354,7 @@ app.get('/',
 	app.get('*', function(req, res) {
 			sess=req.session;
 			
-				res.sendfile('./public/index.html'); 
+				res.sendfile('./views/index.html'); 
 			
 	
 	});
@@ -306,3 +391,19 @@ app.get('/',
 
 
 };
+
+
+function getTodos(res){
+	Todo.find(function(err, todos) {
+			if (err)
+				res.send(err)
+			res.json(todos); 
+		});
+};
+
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated())
+		return next();
+
+	res.redirect('/');
+}

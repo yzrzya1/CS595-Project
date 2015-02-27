@@ -10,7 +10,10 @@ var passwordHash = require('password-hash');
 var flash = require('connect-flash');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
-
+//******new***
+var passport = require('passport');
+ 
+//*************
 var morgan = require('morgan'); 		// log requests to the console (express4)
 var bodyParser = require('body-parser'); 	// pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
@@ -21,15 +24,15 @@ var router = express.Router();
 
 var server = require('http').createServer(app).listen(port);
 var io = require('socket.io').listen(server);
-
+ 
 var nicknames = []; 
 //var server = require('http').Server(app);
 //var io = require('socket.io')(server);	
-
+ 
 // configuration ===============================================================
 mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
- 
-app.use(express.static(__dirname + '/public')); 				// set the static files location /public/img will be /img for users
+require('./config/passport')(passport);
+app.use(express.static(__dirname + '/views')); 				// set the static files location /public/img will be /img for users
 app.use(morgan('dev')); 										// log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'})); 			// parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); 									// parse application/json
@@ -37,9 +40,11 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride());
 
 // using cnonect-session  cookies parser
-app.use(session({secret: 'sshhhhh'}));
-app.use(flash());
-//app.use(express.cookieParser());
+app.use(session({ secret: 'setthesessionkey' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); 
+app.set('view engine', 'ejs');
 
 router.use(function(req, res, next) {
 
@@ -70,7 +75,7 @@ app.requestBeforeRoute = function requestBeforeRoute(server){
 };
 
 // routes ======================================================================
-require('./app/routes.js')(app);
+require('./app/routes.js')(app,passport);
 
 // listen (start app with node server.js) ======================================
 //app.listen(port);

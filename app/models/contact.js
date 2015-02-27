@@ -13,6 +13,7 @@ var contactSchema = new Schema(
 	}]
 });
 module.exports = mongoose.model('Contact', contactSchema);
+
 //mongoose.model('Contact', {});
 
 // var contactSchema = new Schema({
