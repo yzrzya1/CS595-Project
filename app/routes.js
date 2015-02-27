@@ -19,9 +19,10 @@ app.get('/login',
 	}
 	);
 
-app.get('/profile',isLoggedIn,
+app.get('/',isLoggedIn,
 	function(req,res){
-		res.render('profile.ejs', {
+		console.log(req.user);
+		res.render('index.ejs', {
 			user : req.user
 		});
 
@@ -46,17 +47,18 @@ app.post('/loginlocal',passport.authenticate('local-login', {
 			successRedirect : '/', // redirect to the secure profile section
 			failureRedirect : '/loginlocal', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
-		}),
+		})
 	
-	function(req,res){
-		req.session.uname =req.body.uname;
+	,function(req,res){
+		console.log(req.body.email);
+		req.session.uname =req.body.email;
 		console.log(req.body);
 		console.log(req.session);
 
 		console.log("post Login");
 		res.redirect('/');
 	}
-
+	  
 	);
 
 
@@ -97,11 +99,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 
 
 
-app.get('/',
-	function(req,res){
-		res.sendfile('views/index.html');
-	}
-	);
 //***************************end ****************
 	app.get('/api/projects', function(req, res) {
 		Project.find(function(err, projects) {
@@ -349,43 +346,6 @@ app.get('/',
 			});
 		});
 	});
-
-	/*
-	app.get('*', function(req, res) {
-			sess=req.session;
-			
-				res.sendfile('./views/index.html'); 
-			
-	
-	});
-	*/
-		app.get('/awesome', function(req, res) {
-		  if(req.session.lastPage) {
-		    res.write('Last page was: ' + req.session.lastPage + '. ');
-		  }
-
-		  req.session.lastPage = '/awesome';
-		  res.send('Your Awesome.');
-		  return res.redirect('/radical');
-		});
-
-		app.get('/radical', function(req, res) {
-		  if(req.session.lastPage) {
-		    res.write('Last page was: ' + req.session.lastPage + '. ');
-		  }
-
-		  req.session.lastPage = '/radical';
-		  res.send('What a radical visit!');
-		});
-
-		app.get('/tubular', function(req, res) {
-		  if(req.session.lastPage) {
-		    res.write('Last page was: ' + req.session.lastPage + '. ');
-		  }
-
-		  req.session.lastPage = '/tubular';
-		  res.send('Are you a surfer?');
-});
 
 
 
