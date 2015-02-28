@@ -27,13 +27,20 @@ routerApp.config(
             url: '/socketio',
             templateUrl: 'socketio.html'
         })
-
+        .state('calendar', {
+            url: '/calendar',
+            templateUrl: 'calendar.html'
+        })
+        .state('mailbox', {
+            url: '/mailbox',
+            templateUrl: 'mailbox.html'
+        })
         .state('todo', {
             url: '/todo',
             templateUrl: 'todo.html',
             controller: function($scope,$http){
 				$scope.message='ng-work';
-
+				
 				$scope.formData = {};
 				$scope.loading = true;
 

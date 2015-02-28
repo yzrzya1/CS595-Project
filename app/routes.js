@@ -8,9 +8,6 @@ var Todo = require('./models/todo');
 var currentDate = Date();
 //****************using Passport********************
 
-
-
-
 module.exports = function(app,passport) {
 
 app.get('/login',
@@ -61,8 +58,6 @@ app.post('/loginlocal',passport.authenticate('local-login', {
 	  
 	);
 
-
-
 app.get('/signup',
 	function(req,res){
 		console.log('signup load');
@@ -92,12 +87,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 	failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
 	failureFlash : true // allow flash messages
 }));
-
-
-
-
-
-
 
 //***************************end ****************
 	app.get('/api/projects', function(req, res) {
@@ -156,8 +145,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 		
 	});
 
-
-
 	app.delete('/api/contacts/:contact_id', function(req, res) {
 		Contact.remove({
 			_id : req.params.contact_id
@@ -175,8 +162,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 	});
 
 //******************** daily task***************
-
-
 
 	app.get('/api/todos', function(req, res) {
 		getTodos(res);
@@ -218,9 +203,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 		});
 	});
 
-
-
-
 //****************************************
 	app.get('/api/logininfos:logininfos',function(req,res){
 		req.session.name = req.params.logininfos;
@@ -238,9 +220,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 
 		
 	});
-
-
-
 
 	app.get('/api/logininfos', function(req, res) {
 
@@ -270,8 +249,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 				res.render('');
 			}
 
-			
-			
 				req.session.uname=logininfo.uname;
 
 				var data = '/#/dashboard';
@@ -290,8 +267,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 		logininfo.urole = req.body.urole;
 		console.log(logininfo.uname);
 
-
-		
 		Logininfo.create({
 		uname : req.body.uname,
 		upsd : req.body.upsd,
@@ -346,9 +321,6 @@ app.post('/connect/local', passport.authenticate('local-signup', {
 			});
 		});
 	});
-
-
-
 
 };
 
