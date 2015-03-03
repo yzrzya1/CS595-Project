@@ -43,12 +43,12 @@
 
         <div class="checkbox" ng-repeat="todo in todos">
           <label style="width: 100%; ">
-            <i class="fa fa-tasks"></i> {{$index+1}}  {{ todo.text }}
+            <i class="fa fa-tasks"></i> &nbsp;&nbsp;&nbsp;{{$index+1}}  &nbsp;&nbsp;&nbsp;{{ todo.text }}
 
           <div style="float : right">
             
              <i class='done-{{ todo.checked }}' ng-click="updateTodo(todo._id)"></i>
-              
+              &nbsp;&nbsp;&nbsp;
             <i class="fa fa-trash-o" ng-click="deleteTodo(todo._id)"></i>
           </div>
           </label>

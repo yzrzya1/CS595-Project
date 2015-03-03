@@ -9,6 +9,7 @@
 
 	   #chat{
       	   height:400px;
+           width: 300px;
       }
       #contentWrap{
       	  display: none;
@@ -21,6 +22,14 @@
     align-items: center;
 }
       }
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    
+}
+
 	.chat
 {
     list-style: none;
@@ -28,12 +37,7 @@
     padding: 0;
 }
 
-.chat li
-{
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted #B3A9A9;
-}
+
 
 .chat li.left .chat-body
 {
@@ -51,8 +55,13 @@
     margin: 0;
     color: #777777;
 }
+.chat .glyphicon
+{
+    margin-right: 5px;
+}
 
-.panel .slidedown .glyphicon, .chat .glyphicon
+
+.panel .slidedown .glyphicon
 {
     margin-right: 5px;
 }
@@ -81,3 +90,56 @@
     background-color: #555;
 }
 
+
+
+
+
+.bubble{
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+    word-wrap: break-word; 
+    word-break: normal; 
+}
+
+.bubble::before {
+    background-color: #F2F2F2;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    transform:             rotate( 29deg ) skew( -35deg );
+        -moz-transform:    rotate( 29deg ) skew( -35deg );
+        -ms-transform:     rotate( 29deg ) skew( -35deg );
+        -o-transform:      rotate( 29deg ) skew( -35deg );
+        -webkit-transform: rotate( 29deg ) skew( -35deg );
+    width:  20px;
+}
+
+.me {
+    float: left;
+    left: 30px;   
+    margin: 5px 45px 5px 20px;  
+    width: 260px;       
+}
+
+.me::before {
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;           
+}
+
+.you {
+    float: right;    
+    right: 80px; 
+    margin: 5px 20px 5px 45px;         
+}
+
+.you::before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;    
+}
