@@ -1,4 +1,4 @@
-var Logininfo = require('./models/logininfo');
+
 var Project = require('./models/project');
 var It = require('./models/it');
 var Contact = require('./models/contact');
