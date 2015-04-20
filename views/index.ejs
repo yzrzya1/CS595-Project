@@ -34,9 +34,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
-
-
-
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="js/Chart.min.js"></script>
         <script src="js/app.js"></script>
@@ -70,8 +67,8 @@
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
                         <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope"></i>
+                           <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"> </i>
                                 <span class="label label-success">4</span>
                             </a>
                             <ul class="dropdown-menu">
@@ -146,7 +143,7 @@
                         </li>
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a  class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-warning"></i>
                                 <span class="label label-warning">10</span>
                             </a>
@@ -188,7 +185,7 @@
                         </li>
                         <!-- Tasks: style can be found in dropdown.less -->
                         <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a  class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-tasks"></i>
                                 <span class="label label-danger">9</span>
                             </a>
@@ -258,7 +255,7 @@
                         </li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a  class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
                                 <span><%= user.local.email %> <i class="caret"></i></span>
                             </a>
@@ -341,11 +338,7 @@
                                 <i class="fa fa-th"></i> <span>Components</span> <small class="badge pull-right bg-green">new</small>
                             </a>
                         </li>
-                        <li>
-                            <a href="#/contact">
-                                <i class="fa fa-th"></i> <span>contact-List</span> <small class="badge pull-right bg-green">new</small>
-                            </a>
-                        </li>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-table"></i> <span>Tables</span>
@@ -356,71 +349,20 @@
                                 <li><a href="#/todo"><i class="fa fa-angle-double-right"></i> Daily Tasks</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span>Charts</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>UI Elements</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-edit"></i> <span>Forms</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
-                            </ul>
-                        </li>
-
+                       
                         <li>
                             <a href="#/calendar">
                                 <i class="fa fa-calendar"></i> <span>Calendar</span>
-                                <small class="badge pull-right bg-red">building</small>
+                                <small class="badge pull-right bg-red">completed</small>
                             </a>
                         </li>
                         <li>
                             <a href="#/mailbox">
                                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-red">building</small>
+                                <small class="badge pull-right bg-red">completed</small>
                             </a>
                         </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-folder"></i> <span>Examples</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
-                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
-                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                                <li><a href="pages/examples/404.html"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
-                                <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
-                                <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
-                            </ul>
-                        </li>
+                       
                     </ul>
                 </section>
                 <!-- /.sidebar -->

@@ -11,6 +11,16 @@ var routerApp = angular.module('routerApp',
 	  };
 	});
 
+routerApp.directive("tab",function(){
+	return {
+		restrict:"E",
+		transclude:true,
+		scope:{}
+	}
+});
+
+
+
 routerApp.config(
 	
 	function($stateProvider,$urlRouterProvider){
