@@ -8,7 +8,7 @@
 	}
 	,
 	{
-	  "name":"Daisy",
+	  "name":"Ms. Lizbella",
 	   "age": 26,
 	   "class":"JAVA, SQL, AngularJS",
 	   "address":"21212 london street, San Jose, CA",
@@ -21,8 +21,76 @@
 	   "class":"JAVA, SQL",
 	   "address":"21212 london street, San Jose, CA",
 	      "id":3
+	},
+	{
+	  "name":"Jim Green",
+	   "age": 32,
+	   "class":"Python",
+	   "address":"22 DDDD Ave, Santa Jose, CA",
+	   "id":4
 	}
-		
+	,
+	{
+	  "name":"Ms. Lancy",
+	   "age": 26,
+	   "class":"JAVA, SQL, AngularJS",
+	   "address":"21212 london street, San Jose, CA",
+	      "id":5
+	}
+	,
+	{
+	  "name":"Mr Gorge",
+	   "age": 23,
+	   "class":"JAVA, SQL",
+	   "address":"21212 london street, San Jose, CA",
+	      "id":6
+	},
+	{
+	  "name":"Mike Jastion",
+	   "age": 22,
+	   "class":"C++",
+	   "address":"22 ABC street, Santa Clara, CA",
+	   "id":7
+	}
+	,
+	{
+	  "name":"Mr Dashan",
+	   "age": 25,
+	   "class":"Php, MongoDB, Ember.js",
+	   "address":"21212 london street, San Jose, CA",
+	      "id":8
+	}
+	,
+	{
+	  "name":"Mr Arche",
+	   "age": 23,
+	   "class":"Ruby,R Language",
+	   "address":"21212 london street, San Jose, CA",
+	      "id":9
+	},
+	{
+	  "name":"Mike Sullivan",
+	   "age": 22,
+	   "class":"C++",
+	   "address":"22 ABC Court, San Francisco, CA",
+	   "id":10
+	}
+	,
+	{
+	  "name":"Mrs. Daisy",
+	   "age": 21,
+	   "class":"Javascript, SQL, Bootstrap",
+	   "address":"5443 Florance street, San Jose, CA",
+	      "id":11
+	}
+	,
+	{
+	  "name":"Kunnka King",
+	   "age": 23,
+	   "class":"Data Structure, SQL",
+	   "address":"21212 boston blvd , Fremont, CA",
+	      "id":12
+	}
 
 	
 ]
